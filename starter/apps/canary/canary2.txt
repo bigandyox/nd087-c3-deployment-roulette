@@ -1,0 +1,20 @@
+NAME                               READY   STATUS    RESTARTS   AGE 
+pod/canary-v2-74976dd559-24cbk     1/1     Running   0          2m9s
+pod/canary-v2-74976dd559-2rlwj     1/1     Running   0          115s
+pod/canary-v2-74976dd559-47g9t     1/1     Running   0          2m40s
+pod/canary-v2-74976dd559-882gg     1/1     Running   0          3m2s
+pod/canary-v2-74976dd559-bz2k5     1/1     Running   0          115s
+pod/canary-v2-74976dd559-ms4t8     1/1     Running   0          2m40s
+pod/canary-v2-74976dd559-v2nsk     1/1     Running   0          3m2s
+pod/canary-v2-74976dd559-zkrpf     1/1     Running   0          2m9s
+
+NAME                  TYPE           CLUSTER-IP      EXTERNAL-IP     PORT(S)        AGE  
+service/canary-svc    LoadBalancer   10.233.18.11    192.168.1.154   80:32269/TCP   37m  
+
+NAME                          READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/canary-v1     0/0     0            0           3m22s
+deployment.apps/canary-v2     8/8     8            8           3m20s
+
+NAME                                     DESIRED   CURRENT   READY   AGE
+replicaset.apps/canary-v1-6fdd868697     0         0         0       3m22s
+replicaset.apps/canary-v2-74976dd559     8         8         8       3m20s
