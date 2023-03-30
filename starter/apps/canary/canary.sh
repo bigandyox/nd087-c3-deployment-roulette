@@ -35,7 +35,7 @@ function canary_deploy {
 function canary_curl {
   for i in {1..10}
     do
-      curl 192.168.1.153 >> canary.txt
+      curl 192.168.1.153 --silent >> canary.txt
     done
 }
 
@@ -50,8 +50,8 @@ do
   manual_verification
   while [ $(kubectl get pods -n udacity | grep -c canary-v1) -eq $(kubectl get pods -n udacity | grep -c canary-v2) ]
   do
+  echo "Canary deployment has reached 50% - testing load distribution - see canary.txt"
   canary_curl
-  echo "Canary deployment has reached 50% testing load distribution... see canary.txt"
   done
 done
 
