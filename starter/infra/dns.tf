@@ -5,7 +5,7 @@ resource "aws_route53_record" "blue" {
   ttl     = "5"
 
   weighted_routing_policy {
-    weight = 2
+    weight = 5
   }
 
   set_identifier = "blue"
@@ -28,7 +28,7 @@ resource "aws_route53_record" "green" {
   ttl     = "5"
 
   weighted_routing_policy {
-    weight = 1
+    weight = 5
   }
 
   set_identifier = "green"
