@@ -32,6 +32,13 @@ function canary_deploy {
   echo "Canary deployment of $DEPLOY_INCREMENTS replicas successful!"
 }
 
+function canary_curl {
+  for i in {1..10}
+    do
+      curl 192.168.1.153 >> canary.txt
+    done
+}
+
 # Initialize canary-v2 deployment
 kubectl apply -f canary-v2.yml
 
@@ -41,6 +48,11 @@ while [ $(kubectl get pods -n udacity | grep -c canary-v1) -gt 0 ]
 do
   canary_deploy
   manual_verification
+  while [ $(kubectl get pods -n udacity | grep -c canary-v1) -eq $(kubectl get pods -n udacity | grep -c canary-v1) ]
+  do
+  canary_curl
+  echo "Canary deployment has reached 50% testing load distribution... see canary.txt"
+  done
 done
 
 echo "Canary deployment of v2 successful"
