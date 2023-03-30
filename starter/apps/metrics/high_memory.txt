@@ -1,0 +1,2 @@
+NAME                                  CPU(cores)   MEMORY(bytes)   
+hello-world-bd9cf44f8-46kpv           2m           19Mi
