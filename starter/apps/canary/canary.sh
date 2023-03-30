@@ -48,13 +48,11 @@ while [ $(kubectl get pods -n udacity | grep -c canary-v1) -gt 0 ]
 do
   canary_deploy
   manual_verification
-  while [ $(kubectl get pods -n udacity | grep -c canary-v1) -eq $(kubectl get pods -n udacity | grep -c canary-v2) ]
-  do
-  echo "Canary deployment has reached 50% - testing load distribution - see canary.txt"
-  canary_curl
-  break
+  if [ $(kubectl get pods -n udacity | grep -c canary-v1) -eq $(kubectl get pods -n udacity | grep -c canary-v2) ]
+  then
+    echo "Canary deployment has reached 50% - testing load distribution - see canary.txt"
+    canary_curl
+  fi  
 done
 
 echo "Canary deployment of v2 successful"
-
-
