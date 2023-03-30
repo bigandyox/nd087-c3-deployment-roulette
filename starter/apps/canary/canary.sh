@@ -52,7 +52,7 @@ do
   do
   echo "Canary deployment has reached 50% - testing load distribution - see canary.txt"
   canary_curl
-  done
+  break
 done
 
 echo "Canary deployment of v2 successful"
