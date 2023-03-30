@@ -51,7 +51,7 @@ do
   manual_verification
   if [ $(kubectl get pods -n udacity | grep -c canary-v1) -eq $(kubectl get pods -n udacity | grep -c canary-v2) ]
   then
-    echo "Canary deployment has reached 50% - testing load distribution on $SVC_IP - see canary.txt"
+    echo "Canary deployment has reached 50% - testing load distribution - see canary.txt"
     canary_curl
   fi  
 done
