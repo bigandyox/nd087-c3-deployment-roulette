@@ -4,7 +4,7 @@ metadata:
   name: canary-svc
   namespace: udacity
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   selector:
     app: canary
   ports:

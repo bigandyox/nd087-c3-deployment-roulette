@@ -33,9 +33,10 @@ function canary_deploy {
 }
 
 function canary_curl {
+  SVC_IP=$(kubectl get svc canary-svc -n udacity -o jsonpath="{.status.loadBalancer.ingress[*].ip}") #https://stackoverflow.com/questions/45001915/using-kubectl-or-kubernetes-api-to-fetch-external-ip-of-a-service
   for i in {1..10}
     do
-      curl 192.168.1.153 --silent >> canary.txt
+      curl $SVC_IP --silent >> canary.txt
     done
 }
 
@@ -50,7 +51,7 @@ do
   manual_verification
   if [ $(kubectl get pods -n udacity | grep -c canary-v1) -eq $(kubectl get pods -n udacity | grep -c canary-v2) ]
   then
-    echo "Canary deployment has reached 50% - testing load distribution - see canary.txt"
+    echo "Canary deployment has reached 50% - testing load distribution on $SVC_IP - see canary.txt"
     canary_curl
   fi  
 done
